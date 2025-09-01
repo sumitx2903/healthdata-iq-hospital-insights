@@ -83,6 +83,12 @@ You can explore any combination of statistical methods, data cleaning, SQL analy
 
 ---
 
+### Dashboard Link
+
+- [Hospital Performance Dashboard](https://hospitalinfoiq.netlify.app/)
+
+---
+
 ### Presentation Video (5–7 minutes)
 
 Include:
