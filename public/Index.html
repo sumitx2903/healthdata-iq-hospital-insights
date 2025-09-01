@@ -47,38 +47,51 @@
   <!-- Key Visuals Section -->
   <div class="section" id="visuals">
     <h2 class="icon-title"><i class="fa-solid fa-chart-bar"></i> Key Visuals</h2>
-    <div class="grid-4">
-      <div class="image-box" onclick="openModal('Distribution of Hospital Types Across States', 'Images/Distribution of Hospital Types Across States.png')">
+    <div style="margin-bottom:1rem;">
+      <label for="chartFilter"><strong>Filter Visuals:</strong></label>
+      <select id="chartFilter" onchange="filterCharts()">
+        <option value="all">Show All</option>
+        <option value="type">Hospital Types</option>
+        <option value="emergency">Emergency Service</option>
+        <option value="rating">Ratings</option>
+        <option value="satisfaction">Patient Satisfaction</option>
+        <option value="ownership">Ownership</option>
+        <option value="correlation">Correlation</option>
+        <option value="count">Hospital Count</option>
+      </select>
+    </div>
+    <div class="grid-4" id="chartsGrid">
+      <div class="image-box" data-category="type">
         <h3>Distribution of Hospital Types Across States</h3>
-        <img src="Images/Distribution of Hospital Types Across States.png" alt="Hospital Types Distribution">
+        <img src="Images/Distribution of Hospital Types Across States.png" alt="Hospital Types Distribution" onclick="openModal('Distribution of Hospital Types Across States', 'Images/Distribution of Hospital Types Across States.png')">
       </div>
-      <div class="image-box" onclick="openModal('Emergency-Service Availability Rate by State', 'Images/Emergency-Service Availability Rate by State.png')">
+      <div class="image-box" data-category="emergency">
         <h3>Emergency-Service Availability Rate by State</h3>
-        <img src="Images/Emergency-Service Availability Rate by State.png" alt="Emergency Service Availability">
+        <img src="Images/Emergency-Service Availability Rate by State.png" alt="Emergency Service Availability" onclick="openModal('Emergency-Service Availability Rate by State', 'Images/Emergency-Service Availability Rate by State.png')">
       </div>
-      <div class="image-box" onclick="openModal('Top 5 and Bottom 5 States by Average Hospital Rating', 'Images/Top 5 and Bottom 5 States by Average Hospital Rating.png')">
+      <div class="image-box" data-category="rating">
         <h3>Top 5 and Bottom 5 States by Average Hospital Rating</h3>
-        <img src="Images/Top 5 and Bottom 5 States by Average Hospital Rating.png" alt="Top and Bottom States">
+        <img src="Images/Top 5 and Bottom 5 States by Average Hospital Rating.png" alt="Top and Bottom States" onclick="openModal('Top 5 and Bottom 5 States by Average Hospital Rating', 'Images/Top 5 and Bottom 5 States by Average Hospital Rating.png')">
       </div>
-      <div class="image-box" onclick="openModal('Patient Satisfaction by Hospital Type', 'Images/Patient Satisfaction by Hospital Type.png')">
+      <div class="image-box" data-category="satisfaction">
         <h3>Patient Satisfaction by Hospital Type</h3>
-        <img src="Images/Patient Satisfaction by Hospital Type.png" alt="Patient Satisfaction">
+        <img src="Images/Patient Satisfaction by Hospital Type.png" alt="Patient Satisfaction" onclick="openModal('Patient Satisfaction by Hospital Type', 'Images/Patient Satisfaction by Hospital Type.png')">
       </div>
-      <div class="image-box" onclick="openModal('Distribution of Hospital Ratings by Hospital Type', 'Images/Distribution of Hospital Ratings by Hospital Type.png')">
+      <div class="image-box" data-category="rating">
         <h3>Distribution of Hospital Ratings by Hospital Type</h3>
-        <img src="Images/Distribution of Hospital Ratings by Hospital Type.png" alt="Ratings by Type">
+        <img src="Images/Distribution of Hospital Ratings by Hospital Type.png" alt="Ratings by Type" onclick="openModal('Distribution of Hospital Ratings by Hospital Type', 'Images/Distribution of Hospital Ratings by Hospital Type.png')">
       </div>
-      <div class="image-box" onclick="openModal('Correlation Heatmap of Numeric Variables', 'Images/Correlation Heatmap of Numeric Variables.png')">
+      <div class="image-box" data-category="correlation">
         <h3>Correlation Heatmap of Numeric Variables</h3>
-        <img src="Images/Correlation Heatmap of Numeric Variables.png" alt="Correlation Heatmap">
+        <img src="Images/Correlation Heatmap of Numeric Variables.png" alt="Correlation Heatmap" onclick="openModal('Correlation Heatmap of Numeric Variables', 'Images/Correlation Heatmap of Numeric Variables.png')">
       </div>
-      <div class="image-box" onclick="openModal('Distribution of Hospital Ownership Types Across States', 'Images/Distribution of Hospital Ownership Types Across States.png')">
+      <div class="image-box" data-category="ownership">
         <h3>Distribution of Hospital Ownership Types Across States</h3>
-        <img src="Images/Distribution of Hospital Ownership Types Across States.png" alt="Ownership Types">
+        <img src="Images/Distribution of Hospital Ownership Types Across States.png" alt="Ownership Types" onclick="openModal('Distribution of Hospital Ownership Types Across States', 'Images/Distribution of Hospital Ownership Types Across States.png')">
       </div>
-      <div class="image-box" onclick="openModal('Number of Hospitals per State', 'Images/Number of Hospitals per State.png')">
+      <div class="image-box" data-category="count">
         <h3>Number of Hospitals per State</h3>
-        <img src="Images/Number of Hospitals per State.png" alt="Hospitals per State">
+        <img src="Images/Number of Hospitals per State.png" alt="Hospitals per State" onclick="openModal('Number of Hospitals per State', 'Images/Number of Hospitals per State.png')">
       </div>
     </div>
   </div>
@@ -146,6 +159,18 @@
         el.style.display = 'block';
         btn.textContent = 'Hide Suggestions';
       }
+    }
+    // Filter charts by category
+    function filterCharts() {
+      var filter = document.getElementById('chartFilter').value;
+      var boxes = document.querySelectorAll('#chartsGrid .image-box');
+      boxes.forEach(function(box) {
+        if (filter === 'all' || box.getAttribute('data-category') === filter) {
+          box.style.display = '';
+        } else {
+          box.style.display = 'none';
+        }
+      });
     }
   </script>
 
