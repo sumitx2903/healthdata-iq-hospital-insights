@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏥 Hospital Performance Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; margin: 0; }
+    header { background: #0077b6; color: #fff; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    header h1 { margin: 0; font-size: 2rem; }
+    nav a { color: #fff; margin-left: 2rem; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    nav a:hover { text-decoration: underline; color: #ffd166; }
+    .section { margin: 2rem auto; max-width: 1200px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 2rem; }
+    .icon-title { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .image-box { background: #f1f1f1; border-radius: 8px; padding: 1rem; text-align: center; box-shadow: 0 1px 4px #0001; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .image-box img { max-width: 100%; height: auto; border-radius: 6px; margin-bottom: 0.5rem; transition: box-shadow 0.2s; }
+    .image-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #023e8a; }
+    .image-box:hover { transform: scale(1.03); box-shadow: 0 4px 16px #0002; background: #e0f7fa; }
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; overflow: auto; background: rgba(0,0,0,0.7); }
+    .modal-content { background: #fff; margin: 5% auto; padding: 2rem; border-radius: 10px; max-width: 700px; text-align: center; position: relative; }
+    .modal-content img { max-width: 100%; border-radius: 8px; }
+    .close { position: absolute; top: 1rem; right: 1rem; color: #0077b6; font-size: 2rem; cursor: pointer; }
+    ul.insights-list { list-style: none; padding: 0; }
+    ul.insights-list li { margin-bottom: 1rem; font-size: 1.1rem; padding-left: 1.5rem; position: relative; }
+    ul.insights-list li::before { position: absolute; left: 0; top: 0; }
+    .team { text-align: right; margin: 2rem 0 1rem 0; font-size: 1rem; color: #555; }
+    .suggestion-toggle { background: #0077b6; color: #fff; border: none; border-radius: 5px; padding: 0.5rem 1rem; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.2s; }
+    .suggestion-toggle:hover { background: #023e8a; }
+    .suggestions { display: none; margin-top: 1rem; }
+    @media (max-width: 700px) {
+      .section { padding: 1rem; }
+      .grid-4 { grid-template-columns: 1fr; }
+      .modal-content { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏥 Hospital Performance Dashboard</h1>
+    <nav>
+      <a href="#visuals"><i class="fa-solid fa-chart-bar"></i> Visuals</a>
+      <a href="#insights"><i class="fa-solid fa-lightbulb"></i> Insights</a>
+    </nav>
+  </header>
+
+  <!-- Key Visuals Section -->
+  <div class="section" id="visuals">
+    <h2 class="icon-title"><i class="fa-solid fa-chart-bar"></i> Key Visuals</h2>
+    <div class="grid-4">
+      <div class="image-box" onclick="openModal('Distribution of Hospital Types Across States', '../EDA Analysis/Images/Distribution of Hospital Types Across States.png')">
+        <h3>Distribution of Hospital Types Across States</h3>
+        <img src="../EDA Analysis/Images/Distribution of Hospital Types Across States.png" alt="Hospital Types Distribution">
+      </div>
+      <div class="image-box" onclick="openModal('Emergency-Service Availability Rate by State', '../EDA Analysis/Images/Emergency-Service Availability Rate by State.png')">
+        <h3>Emergency-Service Availability Rate by State</h3>
+        <img src="../EDA Analysis/Images/Emergency-Service Availability Rate by State.png" alt="Emergency Service Availability">
+      </div>
+      <div class="image-box" onclick="openModal('Top 5 and Bottom 5 States by Average Hospital Rating', '../EDA Analysis/Images/Top 5 and Bottom 5 States by Average Hospital Rating.png')">
+        <h3>Top 5 and Bottom 5 States by Average Hospital Rating</h3>
+        <img src="../EDA Analysis/Images/Top 5 and Bottom 5 States by Average Hospital Rating.png" alt="Top and Bottom States">
+      </div>
+      <div class="image-box" onclick="openModal('Patient Satisfaction by Hospital Type', '../EDA Analysis/Images/Patient Satisfaction by Hospital Type.png')">
+        <h3>Patient Satisfaction by Hospital Type</h3>
+        <img src="../EDA Analysis/Images/Patient Satisfaction by Hospital Type.png" alt="Patient Satisfaction">
+      </div>
+      <div class="image-box" onclick="openModal('Distribution of Hospital Ratings by Hospital Type', '../EDA Analysis/Images/Distribution of Hospital Ratings by Hospital Type.png')">
+        <h3>Distribution of Hospital Ratings by Hospital Type</h3>
+        <img src="../EDA Analysis/Images/Distribution of Hospital Ratings by Hospital Type.png" alt="Ratings by Type">
+      </div>
+      <div class="image-box" onclick="openModal('Correlation Heatmap of Numeric Variables', '../EDA Analysis/Images/Correlation Heatmap of Numeric Variables.png')">
+        <h3>Correlation Heatmap of Numeric Variables</h3>
+        <img src="../EDA Analysis/Images/Correlation Heatmap of Numeric Variables.png" alt="Correlation Heatmap">
+      </div>
+      <div class="image-box" onclick="openModal('Distribution of Hospital Ownership Types Across States', '../EDA Analysis/Images/Distribution of Hospital Ownership Types Across States.png')">
+        <h3>Distribution of Hospital Ownership Types Across States</h3>
+        <img src="../EDA Analysis/Images/Distribution of Hospital Ownership Types Across States.png" alt="Ownership Types">
+      </div>
+      <div class="image-box" onclick="openModal('Number of Hospitals per State', '../EDA Analysis/Images/Number of Hospitals per State.png')">
+        <h3>Number of Hospitals per State</h3>
+        <img src="../EDA Analysis/Images/Number of Hospitals per State.png" alt="Hospitals per State">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for image preview -->
+  <div id="imgModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal(event)">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImg" src="" alt="Chart Preview">
+    </div>
+  </div>
+
+  <!-- Insights Section -->
+  <div class="section" id="insights">
+    <h2 class="icon-title"><i class="fa-solid fa-lightbulb"></i> Key Insights & Suggestions</h2>
+    <ul class="insights-list">
+      <li>🏥 <strong>Hospital Type Distribution:</strong> General acute care hospitals dominate the landscape across all states. Specialty and critical access hospitals are fewer but tend to perform better in patient satisfaction.</li>
+      <li>🚑 <strong>Emergency Service Impact:</strong> States with higher emergency service availability generally report better average hospital ratings. Emergency-ready hospitals perform consistently better, indicating stronger preparedness and resource allocation.</li>
+      <li>📈 <strong>State Performance Variations:</strong> There are clear disparities in hospital ratings across states. Top-performing states have consistently higher average ratings, while bottom-performing states may require systemic interventions.</li>
+      <li>😊 <strong>Patient Satisfaction Insights:</strong> Patient satisfaction is highly variable across hospital types. Specialty hospitals consistently report higher patient experience ratings compared to general acute care hospitals.</li>
+      <li>🏛️ <strong>Ownership Trends:</strong> Private and nonprofit hospitals tend to achieve higher ratings compared to government hospitals. Government hospitals are overrepresented in lower-rated categories.</li>
+      <li>🔎 <strong>Hospital Ratings Spread:</strong> Significant variation in hospital ratings exists within the same hospital type, indicating that management, location, and operational factors greatly influence performance beyond hospital classification.</li>
+      <li>
+        <button class="suggestion-toggle" onclick="toggleSuggestions()">Show Suggestions</button>
+        <div class="suggestions" id="suggestions">
+          <ul>
+            <li>Strengthen emergency capabilities, especially in underperforming states.</li>
+            <li>Implement targeted quality improvement programs in bottom 5 states using best practices from top performers.</li>
+            <li>Improve government hospital standards with additional funding, staff training, and facility upgrades.</li>
+            <li>Launch focused patient satisfaction initiatives in general hospitals.</li>
+            <li>Adopt best practices from specialty hospitals in general hospitals.</li>
+            <li>Develop real-time dashboards to track hospital performance metrics for early detection of negative trends.</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="team">
+    <p>— Team: Sumit & Syed</p>
+  </div>
+
+  <script>
+    // Modal logic
+    function openModal(title, imgSrc) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('imgModal').style.display = 'block';
+    }
+    function closeModal(event) {
+      if (event.target.classList.contains('modal') || event.target.classList.contains('close')) {
+        document.getElementById('imgModal').style.display = 'none';
+        document.getElementById('modalImg').src = '';
+      }
+    }
+    // Suggestions toggle
+    function toggleSuggestions() {
+      var el = document.getElementById('suggestions');
+      var btn = document.querySelector('.suggestion-toggle');
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        btn.textContent = 'Show Suggestions';
+      } else {
+        el.style.display = 'block';
+        btn.textContent = 'Hide Suggestions';
+      }
+    }
+  </script>
+
+
+</html></body></body>
+</html>
