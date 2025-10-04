@@ -89,7 +89,7 @@ HealthData IQ is an analytics project focused on uncovering meaningful patterns 
 - **Visualizations & Insights:**  
   All key insights, graphs, and suggestions are available in the interactive dashboard:
   - [Hospital Performance Dashboard](https://hospitalinfoiq.netlify.app/)
-- **Presentation Video:** [Link to Video](#) *(YouTube/Drive)*
+
 
 ---
 
