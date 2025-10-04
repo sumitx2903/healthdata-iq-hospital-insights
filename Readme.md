@@ -1,106 +1,112 @@
-# Project 1 (1)
+# HealthData IQ – Hospital Insights & Patient Analytics
 
-# **HealthData IQ – Hospital Insights & Patient Analytics**
+## Overview
 
----
-
-### Dataset:
-
-**Source:** [https://www.kaggle.com/datasets/CMS/hospital-general-information](https://www.kaggle.com/datasets/CMS/hospital-general-information)
-
-**Description:**
-
-- Hospital Name, Type, Ownership, Ratings
-- Emergency Services
-- Mortality, Readmission, Safety
-- Patient Survey Results
-- Location: City, State, County
+HealthData IQ is an analytics project focused on uncovering meaningful patterns and actionable insights from hospital performance and patient feedback across the United States. Using official CMS hospital data, we help stakeholders understand healthcare quality, patient satisfaction, mortality rates, and accessibility.
 
 ---
 
-### Project Overview
+## Dataset
 
-You're working as a healthcare data analyst tasked with uncovering meaningful patterns and insights from hospital performance and patient feedback across the United States. Your analysis will help stakeholders understand trends in quality, satisfaction, mortality, and accessibility.
-
-You can explore any combination of statistical methods, data cleaning, SQL analysis, and visualization. You can even create a dashboard.
-
----
-
-### Suggested Questions to Explore
-
-- Which hospital types are most common across regions?
-- How do hospital ratings vary by ownership or region?
-- Are certain types of hospitals associated with higher patient satisfaction?
-- How does emergency service availability vary across states?
-- Which states have the highest/lowest performing hospitals?
-- Are there patterns in readmission rates or mortality scores?
+- **Source:** [CMS Hospital General Information (Kaggle)](https://www.kaggle.com/datasets/CMS/hospital-general-information)
+- **Features:**
+  - Hospital Name, Type, Ownership, Location (City, State, County)
+  - Ratings (Overall, Safety, Mortality, Readmission)
+  - Emergency Services Availability
+  - Patient Survey Results
 
 ---
 
-### What Should Be Included
+## Team & Division of Work
 
-**Data Cleaning**
+| Name    | Tasks                                                                 |
+|---------|-----------------------------------------------------------------------|
+| Shubham | Data Cleaning: handle missing values, format/rename columns, fix text inconsistencies |
+| Akash   | Exploratory Data Analysis (EDA): perform descriptive statistics, analyze trends, generate metrics |
+| Sumit   | Visualization & Insights: create all graphs and charts, summarize key findings, write interpretations |
 
-- Handle missing data
-- Rename or format confusing column names
-- Clean text-based inconsistencies
-
-**Exploratory Data Analysis (EDA)**
-
-- Use basic Python libraries (Pandas, NumPy, Matplotlib, Seaborn, or Plotly)
-- Include 5–7 visualizations (e.g., bar, pie, boxplot, line, heatmap)
-
-**Insight Generation**
-
-- Describe trends, patterns, or anomalies observed
-- You can use simple metrics or deeper statistical observations
-- Make interpretations in context (e.g., “Public hospitals in state X…”)
-
-**Optional Add-ons**
-
-- Use SQL to support your analysis
-- Apply statistical methods (T-test, correlation, distribution comparison)
-- Create a basic dashboard using Plotly Dash or Streamlit
+*Note: Optional tasks such as SQL analysis, advanced statistics, and dashboard creation were **not** included in this project.*
 
 ---
 
-### Team Collaboration
+## Project Structure
 
-- **Team Size:** 3 members
-- Split tasks clearly (cleaning, EDA, insights, visualization, optional dashboard)
-
----
-
-### Submission Checklist
-
-**GitHub Repository Must Include:**
-
-- Cleaned Dataset (CSV or Excel)
-- Jupyter Notebook (.ipynb)
-- Visuals with brief descriptions
-- Summary of Insights
-- SQL queries or statistical code used
+```bash
+├── data/
+│   └── hospital_cleaned.csv      # Cleaned dataset
+├── notebooks/
+│   └── hospital_analysis.ipynb   # Main Jupyter notebook
+├── visuals/
+│   └── *.png / *.jpg             # Exported visualizations
+├── README.md
+```
 
 ---
 
-### Dashboard Link
+## How to Run
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/<your-org>/<your-repo>.git
+   cd <your-repo>
+   ```
+
+2. **Install dependencies:**
+   - Recommended: Create a virtual environment
+   - Install required packages:
+     ```bash
+     pip install pandas numpy matplotlib seaborn plotly
+     ```
+
+3. **Open the Jupyter notebook:**
+   ```bash
+   jupyter notebook notebooks/hospital_analysis.ipynb
+   ```
+
+---
+
+## Key Analysis Questions
+
+- How does the distribution of hospital types (general acute care, specialty, critical access) vary across states, and which types are associated with higher patient satisfaction?
+- What is the relationship between emergency service availability and average hospital ratings at the state level?
+- Which states consistently rank highest and lowest in hospital performance, and what factors contribute to these disparities?
+- How do patient satisfaction scores compare between specialty hospitals and general acute care hospitals?
+- What trends are observed in hospital ownership (private, nonprofit, government), and how do these ownership categories impact hospital ratings?
+- Is there significant variation in hospital ratings within the same hospital type, and what operational or locational factors might explain this spread?
+
+---
+
+## Methods & Tools
+
+- **Data Cleaning:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn, Plotly
+
+---
+
+## Deliverables
+
+- **Cleaned Dataset:** `data/hospital_cleaned.csv`
+- **Jupyter Notebook:** `notebooks/hospital_analysis.ipynb`
+- **Visualizations & Insights:**  
+  All key insights, graphs, and suggestions are available in the interactive dashboard:
+  - [Hospital Performance Dashboard](https://hospitalinfoiq.netlify.app/)
+- **Presentation Video:** [Link to Video](#) *(YouTube/Drive)*
+
+---
+
+## Results & Insights
+
+All core findings, data visualizations, and actionable suggestions can be explored interactively in the [Hospital Performance Dashboard](https://hospitalinfoiq.netlify.app/).
+
+---
+
+## References
+
+- [CMS Hospital Data on Kaggle](https://www.kaggle.com/datasets/CMS/hospital-general-information)
 - [Hospital Performance Dashboard](https://hospitalinfoiq.netlify.app/)
 
 ---
 
-### Presentation Video (5–7 minutes)
+## License
 
-Include:
-
-- Problem overview and approach
-- Team member contributions
-- Key findings and walkthrough of visuals
-- Upload to YouTube or Google Drive (public access)
-
----
-
-### Submission Timeline
-
-- **Deadline:** Sunday, 10:00 PM
-- **Submission Link Availability:** Saturday, 11:00 AM
+This project is for educational purposes only. Please refer to the dataset's original license for usage restrictions.
