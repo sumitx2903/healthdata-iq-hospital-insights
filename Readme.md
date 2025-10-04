@@ -25,7 +25,6 @@ HealthData IQ is an analytics project focused on uncovering meaningful patterns 
 | Akash   | Exploratory Data Analysis (EDA): perform descriptive statistics, analyze trends, generate metrics |
 | Sumit   | Visualization & Insights: create all graphs and charts, summarize key findings, write interpretations |
 
-*Note: Optional tasks such as SQL analysis, advanced statistics, and dashboard creation were **not** included in this project.*
 
 ---
 
